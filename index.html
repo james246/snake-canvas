@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Snake WEB</title>
+
+  <style type="text/css">
+    #canvas {
+      display: block;
+      margin: 0 auto;
+      /* border: 1px dotted black; */
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas">
+  </canvas>
+
+  <script type="text/javascript">
+    var GRID_X = 20;
+    var GRID_Y = 20;
+
+    var CANVAS_HEIGHT = 300;
+    var CANVAS_WIDTH = 300;
+    
+    var canvas = document.getElementById('canvas');
+    var c = canvas.getContext('2d');
+
+    canvas.setAttribute('height', CANVAS_HEIGHT);
+    canvas.setAttribute('width', CANVAS_WIDTH);
+
+    function drawGrid() {
+      c.fillStyle = 'grey';
+
+      var columnWidth = CANVAS_WIDTH / GRID_X;
+      var rowHeight = CANVAS_HEIGHT / GRID_Y;
+
+      for (var i = 0; i <= GRID_X; i++) {
+        c.fillRect(i * columnWidth, 0, 1, CANVAS_HEIGHT);
+        c.fillRect(0, i * rowHeight, CANVAS_WIDTH, 1);
+      }
+    }
+
+    drawGrid();
+  </script>
+</body>
+</html>
