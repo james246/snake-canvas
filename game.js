@@ -67,27 +67,30 @@ function generateSnake() {
 function plotSnake() {
   grid[snake.position.x][snake.position.y] = config.snake.headToken;
 
-  switch (snake.direction) {
-    case config.directions.NORTH:
-      grid[snake.position.x][snake.position.y + 1] = config.snake.tailToken;
-      break;
-    case config.directions.EAST:
-      grid[snake.position.x - 1][snake.position.y] = config.snake.tailToken;
-      break;
-    case config.directions.SOUTH:
-      grid[snake.position.x][snake.position.y - 1] = config.snake.tailToken;
-      break;
-    case config.directions.WEST:
-      grid[snake.position.x + 1][snake.position.y] = config.snake.tailToken;
-      break;
+  for (var tailIndex = 1; tailIndex <= config.snake.initialLength - 1; tailIndex++) {
+    switch (snake.direction) {
+      case config.directions.NORTH:
+        grid[snake.position.x][snake.position.y + tailIndex] = config.snake.tailToken;
+        break;
+      case config.directions.EAST:
+        grid[snake.position.x - tailIndex][snake.position.y] = config.snake.tailToken;
+        break;
+      case config.directions.SOUTH:
+        grid[snake.position.x][snake.position.y - tailIndex] = config.snake.tailToken;
+        break;
+      case config.directions.WEST:
+        grid[snake.position.x + tailIndex][snake.position.y] = config.snake.tailToken;
+        break;
+      }
   }
+
 }
 
 function rng(max) {
   return Math.floor((Math.random() * max));
 }
 
-function printGrid() {
+function printGame() {
   var s = '';
   for (var y = 0; y <= grid.length - 1; y++) {
     for (var x = 0; x <= grid[y].length - 1; x++) {
@@ -103,4 +106,4 @@ var snake = generateSnake();
 
 drawGrid();
 plotSnake();
-printGrid();
+printGame();
