@@ -34,21 +34,6 @@ function generateGrid() {
   return grid;
 }
 
-function drawGrid() {
-  c.fillStyle = config.styles.grid.fill;
-
-  var columnWidth = config.canvas.width / config.gridSize;
-  var rowHeight = config.canvas.height / config.gridSize;
-
-  for (var i = 1; i <= config.gridSize; i++) {
-    var x = i * columnWidth;
-    var y = i * rowHeight;
-
-    c.fillRect(x, 0, config.styles.grid.lineWidth, config.canvas.height);
-    c.fillRect(0, y, config.canvas.width, config.styles.grid.lineWidth);
-  }
-}
-
 function generateSnake() {
   var gridMidPoint = (config.gridSize / 2) - 1;
 
@@ -83,8 +68,24 @@ function plotSnake() {
         break;
       }
   }
-
 }
+
+function drawGrid() {
+  c.fillStyle = config.styles.grid.fill;
+
+  var columnWidth = config.canvas.width / config.gridSize;
+  var rowHeight = config.canvas.height / config.gridSize;
+
+  for (var i = 1; i <= config.gridSize; i++) {
+    var x = i * columnWidth;
+    var y = i * rowHeight;
+
+    c.fillRect(x, 0, config.styles.grid.lineWidth, config.canvas.height);
+    c.fillRect(0, y, config.canvas.width, config.styles.grid.lineWidth);
+  }
+}
+
+// Utility functions
 
 function rng(max) {
   return Math.floor((Math.random() * max));
@@ -101,9 +102,14 @@ function printGame() {
   console.log(s);
 }
 
+// Setup game
+
 var grid = generateGrid();
 var snake = generateSnake();
 
-drawGrid();
 plotSnake();
+
+drawGrid();
+drawSnake();
+
 printGame();
