@@ -22,26 +22,29 @@ const generateSnake = () => {
     direction: randomDirection,
     position: [
       { x: gridMidPoint, y: gridMidPoint }
-    ]
+    ],
+    length() {
+      return this.position.length;
+    }
   }
 }
 
 const plotSnake = (grid, snake) => {
-  grid[snake.position.x][snake.position.y] = config.snake.headToken;
+  grid[snake.position[0].x][snake.position[0].y] = config.snake.headToken;
 
-  for (var tailIndex = 1; tailIndex <= snake.length - 1; tailIndex++) {
+  for (var tailIndex = 1; tailIndex <= snake.length() - 1; tailIndex++) {
     switch (snake.direction) {
       case config.directions.NORTH:
-        grid[snake.position.x][snake.position.y + tailIndex] = config.snake.tailToken;
+        grid[snake.position[0].x][snake.position[0].y + tailIndex] = config.snake.tailToken;
         break;
       case config.directions.EAST:
-        grid[snake.position.x - tailIndex][snake.position.y] = config.snake.tailToken;
+        grid[snake.position[0].x - tailIndex][snake.position[0].y] = config.snake.tailToken;
         break;
       case config.directions.SOUTH:
-        grid[snake.position.x][snake.position.y - tailIndex] = config.snake.tailToken;
+        grid[snake.position[0].x][snake.position[0].y - tailIndex] = config.snake.tailToken;
         break;
       case config.directions.WEST:
-        grid[snake.position.x + tailIndex][snake.position.y] = config.snake.tailToken;
+        grid[snake.position[0].x + tailIndex][snake.position[0].y] = config.snake.tailToken;
         break;
       }
   }

@@ -30,7 +30,7 @@ const drawSnake = (snake, context) => {
   const headSize = cellSize * 0.8;
   const padding  = (cellSize - headSize) / 2;
 
-  const position = (snake.position.x * cellSize) + (headSize / 2) + padding;
+  const position = (snake.position[0].x * cellSize) + (headSize / 2) + padding;
   const radius   = headSize / 2;
 
   context.beginPath();
