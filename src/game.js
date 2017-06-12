@@ -1,5 +1,4 @@
 import config from '../src/config';
-import { rng } from './util';
 
 const generateGrid = () => {
   var grid = new Array(config.gridSize);
@@ -9,24 +8,6 @@ const generateGrid = () => {
   }
 
   return grid;
-}
-
-const generateSnake = () => {
-  var gridMidPoint = (config.gridSize / 2) - 1;
-
-  var randomDirection = Object.values(config.directions)[rng(
-    Object.values(config.directions).length
-  )];
-
-  return {
-    direction: randomDirection,
-    position: [
-      { x: gridMidPoint, y: gridMidPoint }
-    ],
-    length() {
-      return this.position.length;
-    }
-  }
 }
 
 const plotSnake = (grid, snake) => {

@@ -1,10 +1,11 @@
 import config from './config';
-import { generateGrid, generateSnake, plotSnake } from './game';
+import { generateGrid, plotSnake } from './game';
+import Snake from './snake';
 import { setupCanvas, drawGrid, drawSnake } from './render';
 import { printGame } from './util';
 
 let grid = generateGrid();
-let snake = generateSnake();
+let snake = new Snake();
 
 let context = setupCanvas();
 
