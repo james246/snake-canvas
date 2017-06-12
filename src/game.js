@@ -14,15 +14,15 @@ const generateGrid = () => {
 const generateSnake = () => {
   var gridMidPoint = (config.gridSize / 2) - 1;
 
+  var randomDirection = Object.values(config.directions)[rng(
+    Object.values(config.directions).length
+  )];
+
   return {
-    direction: Object.values(config.directions)[rng(
-      Object.values(config.directions).length
-    )],
-    position: {
-      x: gridMidPoint,
-      y: gridMidPoint
-    },
-    length: config.snake.initialLength
+    direction: randomDirection,
+    position: [
+      { x: gridMidPoint, y: gridMidPoint }
+    ]
   }
 }
 
