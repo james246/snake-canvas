@@ -1,4 +1,7 @@
-function generateGrid() {
+import config from '../src/config';
+import { rng } from './util';
+
+const generateGrid = () => {
   var grid = new Array(config.gridSize);
 
   for (var i = 0; i <= grid.length - 1; i++) {
@@ -8,7 +11,7 @@ function generateGrid() {
   return grid;
 }
 
-function generateSnake() {
+const generateSnake = () => {
   var gridMidPoint = (config.gridSize / 2) - 1;
 
   return {
@@ -23,7 +26,7 @@ function generateSnake() {
   }
 }
 
-function plotSnake() {
+const plotSnake = (grid, snake) => {
   grid[snake.position.x][snake.position.y] = config.snake.headToken;
 
   for (var tailIndex = 1; tailIndex <= snake.length - 1; tailIndex++) {
@@ -44,14 +47,8 @@ function plotSnake() {
   }
 }
 
-// Setup game
-
-var grid = generateGrid();
-var snake = generateSnake();
-
-plotSnake();
-
-drawGrid();
-drawSnake();
-
-printGame();
+export {
+  generateGrid,
+  generateSnake,
+  plotSnake
+};
