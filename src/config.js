@@ -15,6 +15,6 @@ export default {
     }
   },
   snake: {
-    initialLength: 2
+    initialLength: 4
   }
 };

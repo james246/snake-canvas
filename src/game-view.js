@@ -16,7 +16,7 @@ export default class GameView {
     return context;
   }
 
-  drawGrid() {
+  renderGrid() {
     this.context.fillStyle = config.styles.grid.fill;
 
     const columnWidth = config.canvas.width / config.gridSize;
@@ -31,22 +31,41 @@ export default class GameView {
     }
   }
 
-  drawSnake(snake) {
+  renderSnake() {
     const cellSize = config.canvas.width / config.gridSize;
+
     const headSize = cellSize * 0.8;
-    const padding = (cellSize - headSize) / 2;
+    const tailSize = headSize * 0.8;
 
-    const position = (snake.position[0].x * cellSize) + (headSize / 2) + padding;
-    const radius = headSize / 2;
+    const getPadding = itemSize => (cellSize - itemSize) / 2;
+    const getRadius = itemSize => itemSize / 2;
 
-    this.context.beginPath();
-    this.context.arc(position, position, radius, 0, 2 * Math.PI, false);
-    this.context.fillStyle = config.styles.snake.fill;
-    this.context.fill();
+    const getCanvasCoordinate = (gridCoordinate, itemSize, itemPadding) =>
+      (gridCoordinate * cellSize) + (itemSize / 2) + itemPadding;
+
+    for (let i = 0; i <= this.game.snake.position.length - 1; i++) {
+      this.context.beginPath();
+
+      const point = this.game.snake.position[i];
+
+      const itemSize = (i === 0 ? headSize : tailSize);
+      const radius = getRadius(itemSize);
+      const padding = getPadding(itemSize);
+
+      this.context.arc(
+        getCanvasCoordinate(point.x, itemSize, padding),
+        getCanvasCoordinate(point.y, itemSize, padding),
+        radius,
+        0, 2 * Math.PI, false
+      );
+
+      this.context.fillStyle = config.styles.snake.fill;
+      this.context.fill();
+    }
   }
 
   render() {
-    this.drawGrid();
-    this.drawSnake(this.game.snake);
+    this.renderGrid();
+    this.renderSnake();
   }
 }
