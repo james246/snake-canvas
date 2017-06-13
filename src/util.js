@@ -4,7 +4,7 @@ const rng = (max) => {
   return Math.floor((Math.random() * max));
 }
 
-const printGame = (grid) => {
+const printGame = () => {
   var s = '';
   for (var y = 0; y <= grid.length - 1; y++) {
     for (var x = 0; x <= grid[y].length - 1; x++) {
