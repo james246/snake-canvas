@@ -9,8 +9,7 @@ let snake = new Snake();
 
 let context = setupCanvas();
 
-plotSnake(grid, snake);
 drawGrid(context);
 drawSnake(snake, context);
 
-printGame(grid);
+// printGame(grid);
