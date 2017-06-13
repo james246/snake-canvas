@@ -1,15 +1,7 @@
-import config from './config';
-import { generateGrid, generateSnake, plotSnake } from './game';
-import { setupCanvas, drawGrid, drawSnake } from './render';
-import { printGame } from './util';
+import Game from './game';
+import GameView from './game-view';
 
-let grid = generateGrid();
-let snake = generateSnake();
+const game = new Game();
+const gameView = new GameView(game);
 
-let context = setupCanvas();
-
-plotSnake(grid, snake);
-drawGrid(context);
-drawSnake(snake, context);
-
-printGame(grid);
+gameView.render();

@@ -15,8 +15,6 @@ export default {
     }
   },
   snake: {
-    initialLength: 2,
-    headToken: 'o',
-    tailToken: '~'
+    initialLength: 2
   }
 };
