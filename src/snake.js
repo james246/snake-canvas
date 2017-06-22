@@ -7,6 +7,20 @@ export default class Snake {
     this.setInitialPosition();
   }
 
+  move() {
+    const headPosition = this.position[0];
+
+    // set new head position
+    directionLogic(
+      this.direction,
+      () => --headPosition.y,
+      () => ++headPosition.x,
+      () => ++headPosition.y,
+      () => --headPosition.x
+    );
+  }
+
+
   setRandomDirection() {
     this.direction = Object.values(config.directions)[rng(
       Object.values(config.directions).length
@@ -18,13 +32,9 @@ export default class Snake {
 
     const headPosition = { x: gridMidPoint, y: gridMidPoint };
 
-    let initialPosition = [
-      headPosition
-    ];
+    const initialPosition = new Array(headPosition);
 
-    const setTailPosition = (x, y) => {
-      initialPosition.push({ x: x, y: y });
-    };
+    const setTailPosition = (x, y) => initialPosition.push({ x, y });
 
     for (let tailIndex = 1; tailIndex < config.snake.initialLength; tailIndex++) {
       directionLogic(
@@ -33,7 +43,7 @@ export default class Snake {
         () => setTailPosition(headPosition.x - tailIndex, headPosition.y),
         () => setTailPosition(headPosition.x, headPosition.y - tailIndex),
         () => setTailPosition(headPosition.x + tailIndex, headPosition.y)
-      )
+      );
     }
 
     this.position = initialPosition;

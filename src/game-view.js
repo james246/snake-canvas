@@ -43,12 +43,9 @@ export default class GameView {
     const getCanvasCoordinate = (gridCoordinate, itemSize, itemPadding) =>
       (gridCoordinate * cellSize) + (itemSize / 2) + itemPadding;
 
-    for (let i = 0; i <= this.game.snake.position.length - 1; i++) {
+    const drawCircle = (point, itemSize) => {
       this.context.beginPath();
 
-      const point = this.game.snake.position[i];
-
-      const itemSize = (i === 0 ? headSize : tailSize);
       const radius = getRadius(itemSize);
       const padding = getPadding(itemSize);
 
@@ -61,11 +58,22 @@ export default class GameView {
 
       this.context.fillStyle = config.styles.snake.fill;
       this.context.fill();
+    };
+
+    for (let i = 0; i <= this.game.snake.position.length - 1; i++) {
+      const point = this.game.snake.position[i];
+      const itemSize = (i === 0 ? headSize : tailSize);
+
+      drawCircle(point, itemSize);
     }
   }
 
   render() {
     this.renderGrid();
     this.renderSnake();
+  }
+
+  clear() {
+    this.context.clearRect(0, 0, config.canvas.width, config.canvas.height);
   }
 }
